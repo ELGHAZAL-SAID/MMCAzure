@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMC.Application.DTOs.PartnerDTOs;
+namespace MMC.Application.DTOs.SponsorDTOs;
 
-internal class AddPartnerDTO
+internal class UpdateSponsorDTO
 {
     public string Name { get; set; } = null!;
 

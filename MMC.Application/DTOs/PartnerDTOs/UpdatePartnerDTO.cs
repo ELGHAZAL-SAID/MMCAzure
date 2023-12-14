@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMC.Application.DTOs.PartnerDTOs
+namespace MMC.Application.DTOs.PartnerDTOs;
+
+internal class UpdatePartnerDTO
 {
-    internal class UpdatePartnerDTO
-    {
-    }
+    public string Name { get; set; } = null!;
+
+    public string? LogoUrl { get; set; }
 }
