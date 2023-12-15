@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMC.Application.DTOs.SponsorDTOs;
 
-internal class AddSponsorDTO
+public class AddSponsorDTO
 {
     public int Id { get; set; }
 

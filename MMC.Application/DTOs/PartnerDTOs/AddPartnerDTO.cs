@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMC.Application.DTOs.PartnerDTOs;
 
-internal class AddPartnerDTO
+public class AddPartnerDTO
 {
     public string Name { get; set; } = null!;
 

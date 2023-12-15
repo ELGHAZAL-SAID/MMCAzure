@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MMC.Application.DTOs.SupportDTOs;
 
-internal class AddSupportDTO
+public class AddSupportDTO
 {
     public int? EventId { get; set; }
 

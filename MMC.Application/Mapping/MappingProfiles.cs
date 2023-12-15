@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MMC.Application.Mapping;
 
-internal class MappingProfiles : Profile
+public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {

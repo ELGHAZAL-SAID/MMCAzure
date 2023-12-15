@@ -47,6 +47,5 @@ public class Repository<T> : IRepository<T> where T : class
         _table.Entry(data).CurrentValues.SetValues(entity);
         await _db.SaveChangesAsync();
         return data;
-
     }
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MMC.Application.DTOs.SponsorDTOs;
 
-internal class UpdateSponsorDTO
+public class UpdateSponsorDTO
 {
+    public int Id { get; set; }
     public string Name { get; set; } = null!;
 
     public string? LogoUrl { get; set; }

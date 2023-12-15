@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMC.Application.DTOs.SupportDTOs;
 
-internal class UpdateSupportDTO
+public class UpdateSupportDTO
 {
+    public int Id { get; set; }
     public int? EventId { get; set; }
 
     public string SupportType { get; set; } = null!;
