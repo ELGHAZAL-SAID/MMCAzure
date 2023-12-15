@@ -8,14 +8,15 @@ public class Repository<T> : IRepository<T> where T : class
 {
     private readonly DBC _db;
     private DbSet<T> _table;
+   
+
     public Repository(DBC db)
     {
         _db = db;
         _table = _db.Set<T>();
     }
 
-
-
+    
 
     public async Task DeleteAsync(int id)
     {

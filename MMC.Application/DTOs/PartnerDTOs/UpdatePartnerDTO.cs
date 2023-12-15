@@ -9,6 +9,6 @@ namespace MMC.Application.DTOs.PartnerDTOs;
 public class UpdatePartnerDTO
 {
     public int Id { get; set; }
-    public string Name { get; set; } = null!
+    public string Name { get; set; } = null!;
     public string? LogoUrl { get; set; }
 }
