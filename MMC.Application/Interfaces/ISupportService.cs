@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MMC.Application.Interfaces;
 
-internal interface ISupport
+public interface ISupportService
 {
     Task<SupportDTO> FindByIdAsync(int id);
     Task<List<SupportDTO>> FindAllAsync();
