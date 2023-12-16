@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MMC.Application.IRepositories;
+using MMC.Domain.IRepositories;
 using MMC.Infrastructure.Data;
 using MMC.Domain.Entities;
 

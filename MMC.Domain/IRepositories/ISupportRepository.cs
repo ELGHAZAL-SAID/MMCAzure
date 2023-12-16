@@ -1,6 +1,6 @@
 using MMC.Domain.Entities;
 
-namespace MMC.Application.IRepositories;
+namespace MMC.Domain.IRepositories;
 
 public interface ISupportRepository : IRepository<PresentationSupport>
 {
