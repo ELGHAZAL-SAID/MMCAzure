@@ -7,45 +7,45 @@ namespace MMC.Infrastructure.Repositories;
 public class Repository<T> : IRepository<T> where T : class
 {
     private readonly DBC _db;
-    private DbSet<T> _table;
+    private DbSet<T> dbSet;
    
 
     public Repository(DBC db)
     {
         _db = db;
-        _table = _db.Set<T>();
+        dbSet = _db.Set<T>();
     }
 
     
 
     public async Task DeleteAsync(int id)
     {
-        var model = await _table.FindAsync(id);
+        var model = await dbSet.FindAsync(id);
         if (model == null)
             return;
-        _table.Remove(model);
+        dbSet.Remove(model);
         await _db.SaveChangesAsync();
     }
 
     public async Task<IEnumerable<T>> GetAllAsync()
-        => await _table.ToListAsync();
+        => await dbSet.ToListAsync();
 
-    public async Task<T> GetAsync(int id) => await _table.FindAsync(id);
+    public async Task<T> GetAsync(int id) => await dbSet.FindAsync(id);
 
     public async Task<T> PostAsync(T entity)
     {
-        await _table.AddAsync(entity);
+        await dbSet.AddAsync(entity);
         await _db.SaveChangesAsync();
         return entity;
     }
 
     public async Task<T> PutAsync(int id, T entity)
     {
-        var data = await _table.FindAsync(id); ;
+        var data = await dbSet.FindAsync(id);
         if (data is null)
             return null;
 
-        _table.Entry(data).CurrentValues.SetValues(entity);
+        dbSet.Entry(data).CurrentValues.SetValues(entity);
         await _db.SaveChangesAsync();
         return data;
     }
