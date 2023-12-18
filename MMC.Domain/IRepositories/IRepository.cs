@@ -1,4 +1,4 @@
-﻿namespace MMC.Application.IRepositories;
+﻿namespace MMC.Domain.IRepositories;
 
 public interface IRepository<T> where T : class
 {
