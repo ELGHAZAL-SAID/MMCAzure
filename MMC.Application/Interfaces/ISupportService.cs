@@ -16,4 +16,6 @@ internal interface ISupportService
     Task<SupportDTO> CreateAsync(AddSupportDTO entity);
     Task<SupportDTO> UpdateAsync(int id, UpdateSupportDTO entity);
     Task DeleteAsync(int id);
+
+
 }
