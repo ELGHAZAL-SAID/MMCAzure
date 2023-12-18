@@ -12,22 +12,22 @@ namespace MMC.API.Controllers
     {
         private readonly ISponsorService _sponsorService;
 
-        public SponsorController(IPartnerService sponsorService)
+        public SponsorController(ISponsorService sponsorService)
         {
-            _sponsorService = (ISponsorService?)sponsorService;
+            _sponsorService = sponsorService;
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var partnerDto = await _sponsorService.FindByIdAsync(id);
+            var sponsorDto = await _sponsorService.FindByIdAsync(id);
 
-            if (partnerDto == null)
+            if (sponsorDto == null)
             {
                 return NotFound();
             }
 
-            return Ok(partnerDto);
+            return Ok(sponsorDto);
         }
 
         [HttpGet]
@@ -38,23 +38,23 @@ namespace MMC.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] AddSponsorDTO addPartnerDto)
+        public async Task<IActionResult> Create([FromBody] AddSponsorDTO addSponsorDto)
         {
-            var createdSponsorDto = await _sponsorService.CreateAsync(addPartnerDto);
+            var createdSponsorDto = await _sponsorService.CreateAsync(addSponsorDto);
             return CreatedAtAction(nameof(GetById), new { id = createdSponsorDto.Id }, createdSponsorDto);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateSponsorDTO updateSponsorDto)
         {
-            var updatedPartnerDto = await _sponsorService.UpdateAsync(id, updateSponsorDto);
+            var updatedSponsorDto = await _sponsorService.UpdateAsync(id, updateSponsorDto);
 
-            if (updatedPartnerDto == null)
+            if (updatedSponsorDto == null)
             {
                 return NotFound();
             }
 
-            return Ok(updatedPartnerDto);
+            return Ok(updatedSponsorDto);
         }
 
         [HttpDelete("{id}")]
