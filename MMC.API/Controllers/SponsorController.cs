@@ -20,24 +20,14 @@ namespace MMC.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-<<<<<<< HEAD
             var sponsorDto = await _sponsorService.FindByIdAsync(id);
 
             if (sponsorDto == null)
-=======
-            var SponsorDto = await _sponsorService.FindByIdAsync(id);
-
-            if (SponsorDto == null)
->>>>>>> 01c892100a06d9ca798a35ec7f8a1cabd1c02b73
             {
                 return NotFound();
             }
 
-<<<<<<< HEAD
             return Ok(sponsorDto);
-=======
-            return Ok(SponsorDto);
->>>>>>> 01c892100a06d9ca798a35ec7f8a1cabd1c02b73
         }
 
         [HttpGet]
