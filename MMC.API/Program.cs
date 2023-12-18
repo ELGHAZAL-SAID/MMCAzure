@@ -26,7 +26,7 @@ builder.Services.AddScoped<ISponsorRepository, SponsorRepository>();
 
 builder.Services.AddScoped<IPartnerService, PartnerService>();
 
-var app = builder.Build();
+var app = builder.Build(); //builder 
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
