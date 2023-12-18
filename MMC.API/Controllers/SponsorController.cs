@@ -10,24 +10,24 @@ namespace MMC.API.Controllers
     [ApiController]
     public class SponsorController : ControllerBase
     {
-        private readonly ISponsorService _sponsorService;
+        public readonly ISponsorService _sponsorService;
 
-        public SponsorController(IPartnerService sponsorService)
+        public SponsorController(ISponsorService sponsorService)
         {
-            _sponsorService = (ISponsorService?)sponsorService;
+            _sponsorService = sponsorService;
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var partnerDto = await _sponsorService.FindByIdAsync(id);
+            var SponsorDto = await _sponsorService.FindByIdAsync(id);
 
-            if (partnerDto == null)
+            if (SponsorDto == null)
             {
                 return NotFound();
             }
 
-            return Ok(partnerDto);
+            return Ok(SponsorDto);
         }
 
         [HttpGet]
