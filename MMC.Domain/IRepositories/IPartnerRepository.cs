@@ -5,4 +5,5 @@ namespace MMC.Domain.IRepositories;
 public interface IPartnerRepository : IRepository<Partner>
 {
     // Additional methods
+    Task PostAsync(Sponsor sponsors);
 }
