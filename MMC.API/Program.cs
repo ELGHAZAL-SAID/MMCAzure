@@ -3,6 +3,7 @@ using MMC.Application.Mapping;
 using MMC.Infrastructure.Repositories;
 using MMC.Application.Interfaces;
 using MMC.Application.Services;
+using MMC.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 
-    
+
+builder.Services.AddScoped<DBC>();
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IPartnerRepository, PartnerRepository>();
 builder.Services.AddScoped<ISupportRepository, SupportRepository>();
