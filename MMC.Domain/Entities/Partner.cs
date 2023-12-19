@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 namespace MMC.Domain.Entities;
+
 public partial class Partner
 {
     public int Id { get; set; }
@@ -9,6 +10,4 @@ public partial class Partner
     public string Name { get; set; } = null!;
 
     public string? LogoUrl { get; set; }
-
-    public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 }
