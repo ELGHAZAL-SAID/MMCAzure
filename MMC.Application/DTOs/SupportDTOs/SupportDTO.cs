@@ -16,6 +16,4 @@ public class SupportDTO
     public string SupportType { get; set; } = null!;
 
     public string? SupportUrl { get; set; }
-
-    public virtual Event? Event { get; set; }
 }
