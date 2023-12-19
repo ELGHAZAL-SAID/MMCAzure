@@ -10,7 +10,7 @@ namespace MMC.API.Controllers
     [ApiController]
     public class SponsorController : ControllerBase
     {
-        public readonly ISponsorService _sponsorService;
+        private readonly ISponsorService _sponsorService;
 
         public SponsorController(ISponsorService sponsorService)
         {
