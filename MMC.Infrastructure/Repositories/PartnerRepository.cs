@@ -7,9 +7,7 @@ namespace MMC.Infrastructure.Repositories;
 
 public class PartnerRepository : Repository<Partner>, IPartnerRepository
 {
-    public PartnerRepository(DBC db) : base(db)
-    {
-    }
+    public PartnerRepository(DBC db) : base(db) { }
 
     // Additional methods
 }

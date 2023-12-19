@@ -7,9 +7,7 @@ namespace MMC.Infrastructure.Repositories;
 
 public class SponsorRepository : Repository<Sponsor>, ISponsorRepository
 {
-    public SponsorRepository(DBC db) : base(db)
-    {
-    }
+    public SponsorRepository(DBC db) : base(db) { }
 
     // Additional methods
 }

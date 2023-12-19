@@ -7,9 +7,7 @@ namespace MMC.Infrastructure.Repositories;
 
 public class SupportRepository : Repository<PresentationSupport>, ISupportRepository
 {
-    public SupportRepository(DBC db) : base(db)
-    {
-    }
+    public SupportRepository(DBC db) : base(db) { }
 
     // Additional methods
 }
