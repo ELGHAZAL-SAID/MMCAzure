@@ -1,62 +1,75 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MMC.Application.DTOs.PartnerDTOs;
+using MMC.Application.DTOs.SupportDTOs;
 using MMC.Application.Interfaces;
+using MMC.Application.Services;
 using MMC.Domain.Entities;
 using System;
 
-public class PresentationSupportsController : ControllerBase
+
+
+namespace MMC.API.Controllers
 {
-    private readonly ISupportService _presentationSupportService;
-
-    public PresentationSupportsController(ISupportService presentationSupportService)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PresentationSupportsController : ControllerBase
     {
-        _presentationSupportService = presentationSupportService;
-    }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<PresentationSupport>> GetPresentationSupportById(int id)
-    {
-        var presentationSupport = await _presentationSupportService.GetPresentationSupportByIdAsync(id);
+        private readonly ISupportService _presentationSupportService;
 
-        if (presentationSupport == null)
+        public PresentationSupportsController(ISupportService presentationSupportService)
         {
-            return NotFound();
+            _presentationSupportService = presentationSupportService;
         }
 
-        return presentationSupport;
-    }
-
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<PresentationSupport>>> GetPresentationSupportsByEventId(int eventId)
-    {
-        return await _presentationSupportService.FindByIdAsync;
-    }
-
-    [HttpPost]
-    public async Task<ActionResult<PresentationSupport>> CreatePresentationSupport(PresentationSupport presentationSupport)
-    {
-        await _presentationSupportService.CreatePresentationSupportAsync(presentationSupport);
-
-        return CreatedAtAction("GetPresentationSupportById", new { id = presentationSupport.Id }, presentationSupport);
-    }
-
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdatePresentationSupport(int id, PresentationSupport presentationSupport)
-    {
-        if (id != presentationSupport.Id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            return BadRequest();
+            var presentationSupportService = await _presentationSupportService.FindByIdAsync(id);
+
+            if (presentationSupportService == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(presentationSupportService);
         }
 
-        await _presentationSupportService.UpdatePresentationSupportAsync(presentationSupport);
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var presentationSupportService = await _presentationSupportService.FindAllAsync();
+            return Ok(presentationSupportService);
+        }
 
-        return NoContent();
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] AddSupportDTO addSupportDto)
+        {
+            var createdSupportDto = await _presentationSupportService.CreateAsync(addSupportDto);
+            return CreatedAtAction(nameof(GetById), new { id = createdSupportDto.EventId }, createdSupportDto);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateSupportDTO updateSupportDto)
+        {
+            var updatedSDto = await _presentationSupportService.UpdateAsync(id, updateSupportDto);
+
+            if (updatedSDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(updatedSDto);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _presentationSupportService.DeleteAsync(id);
+            return NoContent();
+        }
     }
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeletePresentationSupport(int id)
-    {
-        await _presentationSupportService.DeletePresentationSupportAsync(id);
-
-        return NoContent();
-    }
 }
+

@@ -1,56 +1,84 @@
 ﻿using AutoMapper;
+
 using MMC.Application.DTOs.SupportDTOs;
+
 using MMC.Application.Interfaces;
 using MMC.Domain.Entities;
+using MMC.Domain.IRepositories;
 using System;
 
-public class SupportService : ISupportService
+namespace MMC.Application.Services
 {
-    private readonly ISupportService _context;
-    private readonly IMapper _mapper;
-
-    public SupportService(ISupportService context, IMapper mapper)
+    public class SupportService : ISupportService
     {
-        _context = context;
-        _mapper = mapper;
-    }
+        private readonly ISupportRepository _supportRepository;
+        private readonly IMapper _mapper;
 
-    public async Task<SupportDTO> FindByIdAsync(int id)
-    {
-        var entity = await _context.FindByIdAsync(id);
-        return _mapper.Map<SupportDTO>(entity);
-    }
-
-    public async Task<List<SupportDTO>> FindAllAsync()
-    {
-        var entities = await _context.FindAllAsync();
-        return _mapper.Map<List<SupportDTO>>(entities);
-    }
-
-    public async Task<SupportDTO> CreateAsync(AddSupportDTO entity)
-    {
-        var newEntity = _mapper.Map<PresentationSupport>(entity);
-        await _context.CreateAsync(newEntity);
-        return _mapper.Map<SupportDTO>(newEntity);
-    }
-
-    public async Task<SupportDTO> UpdateAsync(int id, UpdateSupportDTO entity)
-    {
-        var existingEntity = await _context.Supports.FindAsync(id);
-        _mapper.Map(entity, existingEntity);
-        _context.Entry(existingEntity).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
-        return _mapper.Map<SupportDTO>(existingEntity);
-    }
-
-    public async Task DeleteAsync(int id)
-    {
-        var entity = await _context.Supports.FindAsync(id);
-        if (entity != null)
+        public SupportService(ISupportRepository supportRepository, IMapper mapper)
         {
-            _context.Supports.Remove(entity);
-            await _context.SaveChangesAsync();
+            _supportRepository = supportRepository;
+            _mapper = mapper;
+        }
+
+        public async Task<List<SupportDTO>> FindAllAsync()
+        {
+            var presentationSupports = await _supportRepository.GetAllAsync();
+            return _mapper.Map<List<SupportDTO>>(presentationSupports);
+        }
+
+        public async Task<SupportDTO> FindIdAsync(int id)
+        {
+            var presentationSupport = await _supportRepository.GetAsync(id);
+            return _mapper.Map<SupportDTO>(presentationSupport);
+        }
+
+        public async Task<SupportDTO> CreateAsync(AddSupportDTO entity)
+        {
+            var presentationSupport = _mapper.Map<PresentationSupport>(entity);
+            var newPresentationSupport = await _supportRepository.PostAsync(presentationSupport);
+            return _mapper.Map<SupportDTO>(newPresentationSupport);
+        }
+
+        public async Task<SupportDTO> UpdateAsync(int id, UpdateSupportDTO entity)
+        {
+            var presentationSupport = _mapper.Map<PresentationSupport>(entity);
+            var updatedPresentationSupport = await _supportRepository.PutAsync(id, presentationSupport);
+            return _mapper.Map<SupportDTO>(updatedPresentationSupport);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var existingPartner = await _supportRepository.GetAsync(id);
+            if (existingPartner == null)
+            {
+                return;
+            }
+
+            await _supportRepository.DeleteAsync(id);
+        }
+
+        public Task<List<SupportDTO>> GetSupportListAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SupportDTO> FindByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+        public Task CreateAsync(PresentationSupport presentationSupport)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<SupportDTO>> GetSupportList(int id)
+        {
+            throw new NotImplementedException();
         }
     }
-    
+
 }
+

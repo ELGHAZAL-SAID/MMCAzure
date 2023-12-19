@@ -20,7 +20,7 @@ public class MappingProfiles : Profile
         CreateMap<Sponsor, AddSponsorDTO>().ReverseMap();
 
 
-        CreateMap<Partner, PartnerDTO>().ReverseMap();
+        CreateMap<Partner, supportDTO>().ReverseMap();
         CreateMap<Partner, UpdatePartnerDTO>().ReverseMap();
         CreateMap<Partner, AddPartnerDTO>().ReverseMap();
 

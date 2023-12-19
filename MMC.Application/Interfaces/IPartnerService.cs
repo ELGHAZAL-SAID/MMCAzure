@@ -10,10 +10,10 @@ namespace MMC.Application.Interfaces
 {
     public interface IPartnerService
     {
-        Task<PartnerDTO> FindByIdAsync(int id);
-        Task<List<PartnerDTO>> FindAllAsync();
-        Task<PartnerDTO> CreateAsync(AddPartnerDTO entity);
-        Task<PartnerDTO> UpdateAsync(int id, UpdatePartnerDTO entity);
+        Task<supportDTO> FindByIdAsync(int id);
+        Task<List<supportDTO>> FindAllAsync();
+        Task<supportDTO> CreateAsync(AddPartnerDTO entity);
+        Task<supportDTO> UpdateAsync(int id, UpdatePartnerDTO entity);
         Task DeleteAsync(int id);
     }
 }
