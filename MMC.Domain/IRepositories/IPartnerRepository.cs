@@ -4,5 +4,5 @@ namespace MMC.Domain.IRepositories;
 
 public interface IPartnerRepository : IRepository<Partner>
 {
-    // Additional methodsdele
+    // Additional methods
 }

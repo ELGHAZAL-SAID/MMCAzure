@@ -25,6 +25,8 @@ builder.Services.AddScoped<ISupportRepository, SupportRepository>();
 builder.Services.AddScoped<ISponsorRepository, SponsorRepository>();
 
 builder.Services.AddScoped<IPartnerService, PartnerService>();
+builder.Services.AddScoped<ISponsorService, SponsorService>();
+
 
 var app = builder.Build(); //builder 
 
