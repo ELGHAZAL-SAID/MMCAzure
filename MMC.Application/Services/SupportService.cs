@@ -1,11 +1,15 @@
-﻿using System;
+﻿using AutoMapper;
+using MMC.Application.DTOs.SupportDTOs;
+using MMC.Application.Interfaces;
+using MMC.Domain.Entities;
+using System;
 
 public class SupportService : ISupportService
 {
-    private readonly IApplicationDbContext _context;
+    private readonly ISupportService _context;
     private readonly IMapper _mapper;
 
-    public SupportService(IApplicationDbContext context, IMapper mapper)
+    public SupportService(ISupportService context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
@@ -13,21 +17,20 @@ public class SupportService : ISupportService
 
     public async Task<SupportDTO> FindByIdAsync(int id)
     {
-        var entity = await _context.Supports.FindAsync(id);
+        var entity = await _context.FindByIdAsync(id);
         return _mapper.Map<SupportDTO>(entity);
     }
 
     public async Task<List<SupportDTO>> FindAllAsync()
     {
-        var entities = await _context.Supports.ToListAsync();
+        var entities = await _context.FindAllAsync();
         return _mapper.Map<List<SupportDTO>>(entities);
     }
 
     public async Task<SupportDTO> CreateAsync(AddSupportDTO entity)
     {
-        var newEntity = _mapper.Map<Support>(entity);
-        await _context.Supports.AddAsync(newEntity);
-        await _context.SaveChangesAsync();
+        var newEntity = _mapper.Map<PresentationSupport>(entity);
+        await _context.CreateAsync(newEntity);
         return _mapper.Map<SupportDTO>(newEntity);
     }
 

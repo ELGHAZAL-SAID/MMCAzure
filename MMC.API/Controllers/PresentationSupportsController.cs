@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using MMC.Application.Interfaces;
+using MMC.Domain.Entities;
+using System;
 
 public class PresentationSupportsController : ControllerBase
 {
-    private readonly IPresentationSupportService _presentationSupportService;
+    private readonly ISupportService _presentationSupportService;
 
-    public PresentationSupportsController(IPresentationSupportService presentationSupportService)
+    public PresentationSupportsController(ISupportService presentationSupportService)
     {
         _presentationSupportService = presentationSupportService;
     }
@@ -25,7 +28,7 @@ public class PresentationSupportsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<PresentationSupport>>> GetPresentationSupportsByEventId(int eventId)
     {
-        return await _presentationSupportService.GetPresentationSupportsByEventIdAsync(eventId);
+        return await _presentationSupportService.FindByIdAsync;
     }
 
     [HttpPost]
