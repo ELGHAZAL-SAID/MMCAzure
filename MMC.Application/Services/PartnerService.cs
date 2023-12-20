@@ -22,26 +22,26 @@ namespace MMC.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<PartnerDTO> FindByIdAsync(int id)
+        public async Task<supportDTO> FindByIdAsync(int id)
         {
             var partner = await _partnerRepository.GetAsync(id);
-            return _mapper.Map<PartnerDTO>(partner);
+            return _mapper.Map<supportDTO>(partner);
         }
 
-        public async Task<List<PartnerDTO>> FindAllAsync()
+        public async Task<List<supportDTO>> FindAllAsync()
         {
             var partners = await _partnerRepository.GetAllAsync();
-            return _mapper.Map<List<PartnerDTO>>(partners);
+            return _mapper.Map<List<supportDTO>>(partners);
         }
 
-        public async Task<PartnerDTO> CreateAsync(AddPartnerDTO entity)
+        public async Task<supportDTO> CreateAsync(AddPartnerDTO entity)
         {
             var partner = _mapper.Map<Partner>(entity);
             var createdPartner = await _partnerRepository.PostAsync(partner);
-            return _mapper.Map<PartnerDTO>(createdPartner);
+            return _mapper.Map<supportDTO>(createdPartner);
         }
 
-        public async Task<PartnerDTO> UpdateAsync(int id, UpdatePartnerDTO entity)
+        public async Task<supportDTO> UpdateAsync(int id, UpdatePartnerDTO entity)
         {
             var existingPartner = await _partnerRepository.GetAsync(id);
             if (existingPartner == null)
@@ -51,7 +51,7 @@ namespace MMC.Application.Services
 
             _mapper.Map(entity, existingPartner);
             await _partnerRepository.PutAsync(id, existingPartner);
-            return _mapper.Map<PartnerDTO>(existingPartner);
+            return _mapper.Map<supportDTO>(existingPartner);
         }
 
         public async Task DeleteAsync(int id)

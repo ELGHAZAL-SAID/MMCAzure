@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMC.Application.DTOs.PartnerDTOs;
 
-public class PartnerDTO
+public class supportDTO
 {
     public int Id { get; set; }
 

@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMC.Application.Interfaces;
-
-public interface ISupportService
+namespace MMC.Application.Interfaces
 {
-    Task<SupportDTO> FindByIdAsync(int id);
-    Task<List<SupportDTO>> FindAllAsync();
-    Task<SupportDTO> CreateAsync(AddSupportDTO entity);
-    Task<SupportDTO> UpdateAsync(int id, UpdateSupportDTO entity);
-    Task DeleteAsync(int id);
+    public interface ISupportService
+    {
+        Task<SupportDTO> FindByIdAsync(int id);
+        Task<List<SupportDTO>> FindAllAsync();
+        Task<SupportDTO> CreateAsync(AddSupportDTO entity);
+        Task<SupportDTO> UpdateAsync(int id, UpdateSupportDTO entity);
+        Task DeleteAsync(int id);
+    }
 }
+
