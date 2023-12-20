@@ -11,14 +11,11 @@ namespace MMC.Application.Interfaces
 {
     public interface ISupportService
     {
-        Task<List<SupportDTO>> GetSupportListAsync(int id);
         Task<SupportDTO> FindByIdAsync(int id);
         Task<List<SupportDTO>> FindAllAsync();
         Task<SupportDTO> CreateAsync(AddSupportDTO entity);
         Task<SupportDTO> UpdateAsync(int id, UpdateSupportDTO entity);
         Task DeleteAsync(int id);
-        Task CreateAsync(PresentationSupport presentationSupport);
-        Task<List<SupportDTO>> GetSupportList(int id);
     }
 }
 
