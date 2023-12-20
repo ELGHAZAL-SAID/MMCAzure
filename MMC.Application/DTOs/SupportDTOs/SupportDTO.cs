@@ -9,6 +9,7 @@ namespace MMC.Application.DTOs.SupportDTOs;
 
 public class SupportDTO
 {
+    public int Id { get; set; }
     public int? EventId { get; set; }
 
     public string SupportType { get; set; } = null!;
