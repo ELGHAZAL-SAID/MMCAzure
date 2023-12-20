@@ -47,7 +47,7 @@ namespace MMC.API.Controllers
         public async Task<IActionResult> Create([FromBody] AddSupportDTO addSupportDto)
         {
             var createdSupportDto = await _presentationSupportService.CreateAsync(addSupportDto);
-            return CreatedAtAction(nameof(GetById), new { id = createdSupportDto.EventId }, createdSupportDto);
+            return CreatedAtAction(nameof(GetById), new { id = createdSupportDto.Id }, createdSupportDto);
         }
 
         [HttpPut("{id}")]
